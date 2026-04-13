@@ -3,111 +3,220 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MOKS CAFE | Beach Commons</title>
+    <title>MOKS CAFE | Beach Living Elevated</title>
     <style>
-        /* Import Google Fonts for that dope beach vibe */
-        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@400;600;800&display=swap');
+        /* Import Google Fonts - cleaner and bold options */
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@400;600;800&family=Oswald:wght@500;700&display=swap');
 
         :root {
-            --primary-green: #114a31;
-            --rasta-red: #d32d27;
-            --rasta-gold: #f4b324;
-            --sand: #f4ebd0;
-            --dark-wood: #2c1e16;
+            /* Richer, more polished color palette */
+            --primary-green: #0d3826; /* Deeper Green */
+            --vibrant-red: #cc2922; /* More Intense Red */
+            --rich-gold: #fcc200; /* Bolder Gold */
+            --elevated-sand: #fbf6e0; /* Creamier Sand */
+            --deep-wood: #22150a; /* Darker Wood */
+            
+            /* Class Effects */
+            --glass-bg: rgba(255, 255, 255, 0.15); /* Slightly lighter glass */
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --dark-glass-bg: rgba(0, 0, 0, 0.5); /* Darker glass overlay */
+            --glass-blur: 15px; /* Deeper blur */
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: all 0.3s ease; /* Smooth transitions everywhere */
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--sand);
-            color: var(--dark-wood);
-            line-height: 1.6;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--elevated-sand);
+            color: var(--deep-wood);
+            line-height: 1.7;
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
         }
 
         h1, h2, h3 {
             font-family: 'Bangers', cursive;
             letter-spacing: 2px;
+            font-weight: 500; /* Bangers doesn't really have weights, but let's encourage cleanliness */
+        }
+
+        h2.section-title, h3.category-title {
+            font-family: 'Oswald', sans-serif; /* Cleaner Oswald for section headers */
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        /* --- Animations --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-on-load {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 0; /* Initially hidden */
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* --- Header & Hero Section --- */
         header {
             background-color: var(--primary-green);
-            color: var(--sand);
+            color: var(--elevated-sand);
             text-align: center;
-            padding: 4rem 1rem;
-            border-bottom: 8px solid var(--rasta-gold);
+            padding: 6rem 1rem; /* More space */
             position: relative;
+            overflow: hidden;
+            border-bottom: 12px solid; /* Thicker border */
+            border-image: linear-gradient(to right, var(--primary-green), var(--rich-gold), var(--vibrant-red), var(--primary-green)) 1; /* Rasta gradient border */
+        }
+
+        /* Glass background overlay on header */
+        header::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), var(--primary-green);
+            backdrop-filter: blur(var(--glass-blur));
+            z-index: -1;
+        }
+
+        .hero-logo-container {
+            display: inline-block;
+            position: relative;
+            padding: 1rem;
+            border-radius: 50%;
+            border: 5px solid var(--elevated-sand);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            margin-bottom: 2rem;
+            animation: scaleIn 0.8s ease forwards;
         }
 
         .hero-logo {
-            max-width: 250px;
+            max-width: 280px; /* Slightly larger */
             border-radius: 50%;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-            margin-bottom: 1.5rem;
-            border: 4px solid var(--sand);
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease-in-out; /* Slower, smoother transform */
         }
 
-        .hero-logo:hover {
-            transform: scale(1.05) rotate(3deg);
+        .hero-logo-container:hover .hero-logo {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .hero-title {
-            font-size: 4rem;
-            margin-bottom: 0.5rem;
-            text-shadow: 3px 3px 0px var(--dark-wood);
+            font-size: 5rem; /* Larger */
+            margin-bottom: 1rem;
+            text-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+            animation: fadeInUp 0.8s ease 0.2s forwards; /* Animated entrance with delay */
+            opacity: 0;
         }
 
         .hero-subtitle {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--rasta-gold);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--rich-gold);
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 5px;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
         }
 
         /* --- Main Content Layout --- */
         .container {
-            max-width: 1200px;
+            max-width: 1300px; /* Wider */
             margin: 0 auto;
-            padding: 3rem 1rem;
+            padding: 5rem 1rem;
+            position: relative;
         }
 
         .section-title {
             text-align: center;
-            font-size: 3rem;
+            font-size: 4rem; /* Larger Oswald title */
             color: var(--primary-green);
-            margin-bottom: 2rem;
-            text-transform: uppercase;
+            margin-bottom: 3rem;
+            text-shadow: 2px 2px 0px rgba(255, 255, 255, 0.5); /* Subtle text shadow for depth */
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 20px;
+            right: 20px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-green), var(--rich-gold), var(--vibrant-red));
+            border-radius: 5px;
         }
 
         /* --- Menu Grid --- */
         .menu-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem; /* More space */
+            margin-bottom: 6rem;
         }
 
+        /* Distinctive Glass Category Card */
         .menu-category {
-            background: #fff;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            border-top: 5px solid var(--rasta-red);
+            background: var(--glass-bg); /* Use glass variable */
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1), inset 0 0 10px rgba(255, 255, 255, 0.2); /* Outer and inner shadow for depth */
+            border: 2px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur)); /* Backdrop blur */
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease 0.1s forwards; /* Fading in with slight delay */
+            opacity: 0;
+        }
+
+        /* Subtle rasta gradient hover border */
+        .menu-category:hover {
+            border-color: rgba(255, 255, 255, 0.5);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2), inset 0 0 15px rgba(255, 255, 255, 0.3);
         }
 
         .menu-category h3 {
-            font-size: 2rem;
-            color: var(--rasta-red);
-            border-bottom: 2px dashed var(--sand);
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
+            color: var(--vibrant-red);
+            border-bottom: 3px solid var(--glass-border);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
         }
 
         .menu-list {
@@ -115,12 +224,19 @@
         }
 
         .menu-list li {
-            font-size: 1.1rem;
-            font-weight: 600;
-            padding: 0.5rem 0;
+            font-size: 1.2rem;
+            font-weight: 700; /* Bold Oswald-style Montserrat */
+            padding: 1rem 0;
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid #eee;
+            align-items: center;
+            border-bottom: 2px dashed rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s ease-in-out, opacity 0.2s; /* Item transitions */
+        }
+
+        .menu-list li:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            opacity: 0.9;
         }
 
         .menu-list li:last-child {
@@ -128,101 +244,185 @@
         }
 
         /* --- Services & Vibe Section --- */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            text-align: center;
-            margin-bottom: 4rem;
+        .vibe-section {
+            background-image: linear-gradient(rgba(13, 56, 38, 0.8), rgba(0, 0, 0, 0.8)), url('beach-texture.jpg'); /* Fading gradient over texture - *Ensure you add a beach texture if desired* */
+            background-size: cover;
+            background-attachment: fixed; /* Parallax style */
+            border-radius: 25px;
+            padding: 5rem;
+            color: var(--elevated-sand);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            border: 5px solid var(--glass-border);
+            animation: scaleIn 1s ease 0.3s forwards; /* Animate entrance with delay */
+            opacity: 0;
+        }
+        
+        /* Darker glass overlay on vibe section content */
+        .vibe-content-wrapper {
+            background-color: var(--dark-glass-bg);
+            backdrop-filter: blur(var(--glass-blur));
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--glass-border);
         }
 
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* Stronger Glass Service Card */
         .service-card {
-            background-color: var(--primary-green);
-            color: var(--sand);
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+            background-color: rgba(255, 255, 255, 0.1); /* Lighter glass within darker container */
+            color: var(--elevated-sand);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 10px rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur));
+            transition: all 0.4s ease-in-out;
+            animation: fadeInUp 0.8s ease 0.5s forwards;
+            opacity: 0;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.03); /* Lift and grow on hover */
+            background-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3), inset 0 0 15px rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         .service-card h3 {
-            color: var(--rasta-gold);
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            color: var(--rich-gold);
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
         }
 
         .service-card p {
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
         }
 
         .price-highlight {
             display: block;
-            font-size: 1.5rem;
+            font-size: 2rem; /* Larger */
             color: #fff;
-            margin-top: 1rem;
-            font-family: 'Bangers', cursive;
-            letter-spacing: 1px;
+            margin-top: 1.5rem;
+            font-family: 'Oswald', sans-serif; /* Cleaner price */
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
         }
 
         /* --- Footer & Contact --- */
         footer {
-            background-color: var(--dark-wood);
-            color: var(--sand);
+            background-color: var(--deep-wood);
+            color: var(--elevated-sand);
             text-align: center;
-            padding: 4rem 1rem;
-            border-top: 8px solid var(--primary-green);
+            padding: 6rem 1rem;
+            border-top: 12px solid;
+            border-image: linear-gradient(to right, var(--primary-green), var(--rich-gold), var(--vibrant-red), var(--primary-green)) 1;
+            position: relative;
+            z-index: 1; /* Ensure on top for any absolute elements */
+        }
+        
+        /* Glass effect over footer content */
+        .footer-content {
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(var(--glass-blur));
+            padding: 4rem;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.15);
+            display: inline-block; /* Center footer content more effectively */
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.1);
         }
 
         .footer-logo {
-            max-width: 150px;
-            margin-bottom: 1.5rem;
+            max-width: 180px; /* Slightly larger */
+            margin-bottom: 2rem;
             border-radius: 50%;
+            border: 5px solid var(--elevated-sand);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            animation: fadeIn 1s ease 0.6s forwards;
+            opacity: 0;
         }
 
         .contact-info p {
-            margin-bottom: 0.5rem;
-            font-size: 1.1rem;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            font-weight: 600; /* Bolder contact text */
+            animation: fadeIn 1s ease 0.8s forwards;
+            opacity: 0;
+        }
+
+        .contact-info strong {
+            font-weight: 800; /* Extra bold headers in contact */
+            color: var(--rich-gold);
         }
 
         .social-btn {
             display: inline-block;
-            margin-top: 1.5rem;
-            padding: 10px 25px;
-            background-color: #1877F2; /* Facebook Blue */
+            margin-top: 2rem;
+            padding: 15px 35px; /* Larger button */
+            background: linear-gradient(135deg, #1877F2, #145dbf); /* Blue gradient */
             color: white;
             text-decoration: none;
-            font-weight: 800;
-            border-radius: 30px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 40px; /* More rounded */
             text-transform: uppercase;
-            transition: background-color 0.3s;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            animation: fadeIn 1s ease 1s forwards;
+            opacity: 0;
         }
 
         .social-btn:hover {
-            background-color: #145dbf;
+            background: linear-gradient(135deg, #145dbf, #1877F2);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+            transform: scale(1.05); /* Enlarge slightly on hover */
         }
 
         /* Responsive Tweaks */
+        @media (max-width: 1024px) {
+            .container { padding: 4rem 1.5rem; }
+            .vibe-section { padding: 4rem; }
+        }
+
         @media (max-width: 768px) {
-            .hero-title { font-size: 3rem; }
-            .section-title { font-size: 2.5rem; }
+            .hero-title { font-size: 3.5rem; }
+            .section-title { font-size: 3rem; }
+            .hero-subtitle { font-size: 1.2rem; letter-spacing: 3px; }
+            .vibe-section { padding: 3rem; border-radius: 15px;}
+            .menu-category, .service-card, .footer-content, .vibe-content-wrapper { padding: 2rem; border-radius: 15px;}
+            .menu-container, .services-grid { gap: 1.5rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="MOKS CAFE LOGO (3).jpg" alt="Moks Cafe Logo" class="hero-logo">
-        <h1 class="hero-title">MOKS CAFE</h1>
-        <p class="hero-subtitle">Est. 2019 • Beach Commons • PH</p>
+        <div class="hero-logo-container">
+            <img src="MOKS CAFE LOGO (3).jpg" alt="Moks Cafe Logo" class="hero-logo">
+        </div>
+        <h1 class="hero-title animate-on-load">MOKS CAFE</h1>
+        <p class="hero-subtitle animate-on-load">Est. 2019 • Beach Living Elevated • PH</p>
     </header>
 
-    <div class="container">
+    <div class="container fade-in">
         
-        <h2 class="section-title">The Grub</h2>
+        <h2 class="section-title animate-on-load">The Grub</h2>
         <div class="menu-container">
             
-            <div class="menu-category">
-                <h3>Heavy Hits & Silog</h3>
+            <div class="menu-category animate-on-load">
+                <h3 class="category-title">Heavy Hits & Silog</h3>
                 <ul class="menu-list">
                     <li>Tapsilog</li>
                     <li>Sisig</li>
@@ -235,8 +435,8 @@
                 </ul>
             </div>
 
-            <div class="menu-category">
-                <h3 style="color: var(--primary-green);">Beach Bites</h3>
+            <div class="menu-category animate-on-load" style="border-color: rgba(13, 56, 38, 0.4);">
+                <h3 class="category-title" style="color: var(--primary-green);">Beach Bites</h3>
                 <ul class="menu-list">
                     <li>Lumpia</li>
                     <li>Fries</li>
@@ -247,8 +447,8 @@
                 </ul>
             </div>
 
-            <div class="menu-category">
-                <h3 style="color: var(--rasta-gold); text-shadow: 1px 1px 0px #000;">Thirst Quenchers</h3>
+            <div class="menu-category animate-on-load" style="border-color: rgba(252, 194, 0, 0.4);">
+                <h3 class="category-title" style="color: var(--rich-gold); text-shadow: 2px 2px 0px #000;">Thirst Quenchers</h3>
                 <ul class="menu-list">
                     <li>Redhorse</li>
                     <li>Whiskey</li>
@@ -260,37 +460,37 @@
             </div>
         </div>
 
-        <h2 class="section-title">Beach Living Setup</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <h3>Custom Cravings</h3>
-                <p>Got a specific recipe in mind?<br>Tell us. We accept custom orders and will cook it up just for you.</p>
-            </div>
-            <div class="service-card">
-                <h3>Table Rentals</h3>
-                <p>Secure your spot and chill by the beach.</p>
-                <span class="price-highlight">₱150 - ₱300</span>
-            </div>
-            <div class="service-card">
-                <h3>Tent Camping</h3>
-                <p>Crash by the waves. Rent a tent for the ultimate overnight vibe.</p>
-                <span class="price-highlight">₱300 / Night</span>
+        <div class="vibe-section animate-on-load">
+            <div class="vibe-content-wrapper">
+                <h2 class="section-title animate-on-load" style="color: var(--elevated-sand); text-shadow: 2px 2px 0px rgba(0,0,0,0.5);">Beach Living Setup</h2>
+                <div class="services-grid">
+                    <div class="service-card animate-on-load">
+                        <h3>Custom Cravings</h3>
+                        <p>Got a specific recipe in mind?<br>Just say the word. We accept custom orders and will cook it up just for you!</p>
+                    </div>
+                    <div class="service-card animate-on-load">
+                        <h3>Table Rentals</h3>
+                        <p>Secure your spot and chill by the beach in comfort.</p>
+                        <span class="price-highlight">₱150 - ₱300</span>
+                    </div>
+                    <div class="service-card animate-on-load">
+                        <h3>Tent Camping</h3>
+                        <p>Crash by the waves. Rent a tent for the ultimate overnight beach vibe.</p>
+                        <span class="price-highlight">₱300 / Night</span>
+                    </div>
+                </div>
             </div>
         </div>
 
     </div>
 
     <footer>
-        <img src="MOKS CAFE LOGO (1).jpg" alt="Moks Cafe Wood Logo" class="footer-logo">
-        <div class="contact-info">
-            <p><strong>Location:</strong> Bless Project Brgy Daga, Cadiz City, Philippines, 6121</p>
-            <p><strong>Phone:</strong> +63 967 064 3135</p>
-            <p><strong>Email:</strong> garsolascodanilah9@gmail.com</p>
-            <p style="margin-top: 1rem; color: var(--rasta-gold);">Always Open</p>
-            
-            <a href="https://www.facebook.com/profile.php?id=100091225906507" target="_blank" class="social-btn">Follow Us on Facebook</a>
-        </div>
-    </footer>
-
-</body>
-</html>
+        <div class="footer-content animate-on-load">
+            <img src="MOKS CAFE LOGO (1).jpg" alt="Moks Cafe Wood Logo" class="footer-logo animate-on-load">
+            <div class="contact-info">
+                <p class="animate-on-load"><strong>Location:</strong> Bless Project Brgy Daga, Cadiz City, Philippines, 6121</p>
+                <p class="animate-on-load"><strong>Phone:</strong> +63 967 064 3135</p>
+                <p class="animate-on-load"><strong>Email:</strong> garsolascodanilah9@gmail.com</p>
+                <p class="animate-on-load" style="margin-top: 1.5rem; color: var(--rich-gold); font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px;">Always Open</p>
+                
+                <a href="
